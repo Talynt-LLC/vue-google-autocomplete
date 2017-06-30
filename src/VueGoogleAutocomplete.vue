@@ -1,7 +1,5 @@
 <template>
     <input
-        ref="autocomplete"
-        type="text"
         :class="classname"
         :id="id"
         :placeholder="placeholder"
@@ -83,6 +81,7 @@
           this.autocomplete.addListener('place_changed', () => {
 
                 let place = this.autocomplete.getPlace();
+                let formatted_address = place.formatted_address;
 
                 if (!place.geometry) {
                   // User entered the name of a Place that was not suggested and
@@ -117,7 +116,7 @@
                     returnData['longitude'] = place.geometry.location.lng();
 
                     // return returnData object and PlaceResult object
-                    this.$emit('placechanged', returnData, place);
+                    this.$emit('placechanged', formatted_address);
                 }
            });
         },
@@ -150,36 +149,11 @@
              * @param  {Event} event A keypress event
              */
             onKeyPress(event) {
-              this.$emit('keypress', event);
-            },
-
-            /**
-             * Clear the input
-             */
-            clear() {
-              this.autocompleteText = ''
-            },
-
-            /**
-             * Focus the input
-             */
-            focus() {
-              this.$refs.autocomplete.focus()
-            },
-
-            /**
-             * Blur the input
-             */
-            blur() {
-              this.$refs.autocomplete.blur()
-            },
-
-            /**
-             * Update the value of the input
-             * @param  {String} value
-             */
-            update (value) {
-              this.autocompleteText = value
+              var self = this;
+              
+              setTimeout(function(){
+                self.$emit('keypress', self.autocompleteText);
+              }, 300);
             },
 
             // Bias the autocomplete object to the user's geographical location,
