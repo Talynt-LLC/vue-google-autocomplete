@@ -2,6 +2,10 @@
 
 A Vue.js (2.x) autosuggest component for the Google Maps Places API.
 
+## Fork
+
+A few changes for one of our applications.
+
 ## Demo
 
 Live demo: [olefirenko.github.io/vue-google-autocomplete](https://olefirenko.github.io/vue-google-autocomplete/)
