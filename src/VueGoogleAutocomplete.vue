@@ -3,7 +3,7 @@
         :class="classname"
         :id="id"
         :placeholder="placeholder"
-        v-model="autocompleteText"
+        v-model.lazy="autocompleteText"
         @focus="onFocus()"
         @blur="onBlur()"
         @change="onChange"
